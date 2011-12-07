@@ -15,8 +15,9 @@ import java.util.HashMap;
 public class GestorARFF {
 	
 	private String nombreBD;
-	ArrayList instanciasEntr;
-	ArrayList instanciasTest;
+	private int clase;
+	private ArrayList instanciasEntr;
+	private ArrayList instanciasTest;
 		
 	
 	private void cargarFicheroARFF(ArrayList instancias, String t_fich) throws IOException{
@@ -39,13 +40,7 @@ public class GestorARFF {
 				}				
 				//Separamos la cadena en un vector de String (por las comas)
 				String[] clases = cls.split(",");
-			
-				
-				/*System.out.println("Numero de clases: "+clases.length);
-				for(int i=0;i<clases.length;i++)
-					System.out.println(clases[i]);*/
-			
-				
+						
 				//Creamos un traductor de clases texto a numeros
 				for(int i=0;i<clases.length;i++){
 					tradClases.put(clases[i], Integer.valueOf(i+1));
@@ -85,6 +80,33 @@ public class GestorARFF {
 		
 		bf.close();
 		isr.close();
+		
+	}
+	
+	private void cargarFichero(ArrayList instancias, String t_fich) throws IOException{
+		
+		FileReader isr = new FileReader("ficheros/"+nombreBD+t_fich);
+		BufferedReader bf = new BufferedReader(isr);
+		
+		int instancia = 1;
+		String cadena = "";
+		
+		while(bf.ready()){
+			cadena = bf.readLine();
+			//Separamos la cadena en un vector de String (por las comas)
+			String[] atributos = cadena.split(",");
+			if(nombreBD.startsWith("iris"))
+				instancias.add(new Iris(instancia,atributos));
+			else{
+				if(nombreBD.startsWith("pima"))
+					instancias.add(new Pima(instancia,atributos));
+				else{
+					if(nombreBD.startsWith("wine"))
+						instancias.add(new Wine(instancia,atributos));
+				}
+			}
+			instancia++;
+		}
 		
 	}
 	
@@ -152,7 +174,22 @@ public class GestorARFF {
 		
 	}
 	
-	public GestorARFF() throws IOException{
+	public GestorARFF(int cls) throws IOException{
+		
+		switch(cls){
+			case 1:nombreBD = "iris";
+			break;
+			case 2:nombreBD = "pima";
+			break;
+			case 3:nombreBD = "wine";
+			break;
+		}
+		
+		instanciasEntr = new ArrayList();
+		instanciasTest = new ArrayList();
+		
+		cargarFichero(instanciasEntr,".ent");
+		cargarFichero(instanciasTest,".tes");	
 		
 	}
 	

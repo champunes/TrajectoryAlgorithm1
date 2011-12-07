@@ -15,9 +15,14 @@ public class AlgoritmosTrayectorias1 {
 	public static void main(String[] args) throws IOException{
 		// TODO code application logic here
 		
-		GestorARFF iris = new GestorARFF("iris");
+		//Codigo para adaptar y normalizar los datos de una BD ARFF
+		/*GestorARFF iris = new GestorARFF("iris");
 		GestorARFF pima = new GestorARFF("pima");
-		GestorARFF wine = new GestorARFF("wine");
+		GestorARFF wine = new GestorARFF("wine");*/
+		
+		GestorARFF iris = new GestorARFF(1);
+		GestorARFF pima = new GestorARFF(2);
+		GestorARFF wine = new GestorARFF(3);
 		
 	}
 }

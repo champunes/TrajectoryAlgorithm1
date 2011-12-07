@@ -20,13 +20,6 @@ public class Iris implements ARFF{
 		}			
 		clase = new Integer(atr[atr.length-1]);
 
-		
-		/*System.out.println("Soy la instancia "+instancia.toString()+". Mi clase es:"+clase.toString());
-		System.out.println("Atributos:");
-		System.out.print(atributos.get(0).toString()+"\t");
-		System.out.print(atributos.get(1).toString()+"\t");
-		System.out.print(atributos.get(2).toString()+"\t");
-		System.out.print(atributos.get(3).toString()+"\t\n\n");*/
 	}
 	
 	@Override
