@@ -5,7 +5,7 @@ import java.util.ArrayList;
  *
  * @author Jose Angel Gonzalez Molina
  */
-public class Iris {
+public class Iris implements ARFF{
 	
 	private Integer instancia;
 	private ArrayList atributos;
@@ -29,16 +29,24 @@ public class Iris {
 		System.out.print(atributos.get(3).toString()+"\t\n\n");*/
 	}
 	
+	@Override
 	public float getAtributo(int i){
 		return (Float)atributos.get(i);
 	}
 	
+	@Override
 	public void setAtributo(int i, float val){
 		atributos.set(i, new Float(val));
 	}
 	
+	@Override
 	public int getNumAtributos(){
 		return atributos.size();
+	}
+	
+	@Override
+	public int getClase(){
+		return clase;
 	}
 	
 }
