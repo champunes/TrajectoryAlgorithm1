@@ -108,6 +108,9 @@ public class GestorARFF {
 			instancia++;
 		}
 		
+		bf.close();
+		isr.close();
+		
 	}
 	
 	private void normalizarDatos(ArrayList datos){
